@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synodic Game Servers | Terminal</title>
+    <style>
+        :root {
+            --glow-blue: #00d4ff;
+            --dark-bg: #050a0f;
+            --panel-bg: rgba(10, 20, 30, 0.8);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at center, #102030 0%, #050a0f 100%);
+            color: var(--glow-blue);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .terminal-interface {
+            background: var(--panel-bg);
+            border: 1px solid var(--glow-blue);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2), inset 0 0 10px rgba(0, 212, 255, 0.1);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Scanning Line Effect */
+        .terminal-interface::before {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 212, 255, 0.05), transparent);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            border-bottom: 2px solid var(--glow-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .status {
+            font-size: 0.7rem;
+            margin-bottom: 30px;
+            color: #4a8ca0;
+        }
+
+        .file-button {
+            display: block;
+            border: 1px solid var(--glow-blue);
+            background: transparent;
+            color: var(--glow-blue);
+            padding: 15px;
+            margin: 15px 0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .file-button:hover {
+            background: var(--glow-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--glow-blue);
+            transform: scale(1.02);
+        }
+
+        .bracket { font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div class="terminal-interface">
+        <div style="text-align: left;">
+            <h1>SYNODIC DEDICATED SERVER FILES</h1>
+            <div class="status">SYSTEM STATUS: <span style="color: #00ff00;">ONLINE</span> // DATA UPLINK READY</div>
+        </div>
+
+        <a href="https://drive.google.com/file/d/1wLFEx8jmC5oyJZJGwqx1d1KWWB-Hj2sb/view?usp=sharing" class="file-button"><span class="bracket">[</span> VALHIEM MODS <span class="bracket">]</span></a>
+        <a href="https://drive.google.com/file/d/1ZxcOC5qmL26IOFb3A-iISCL9dV7w7ySw/view?usp=sharing" class="file-button"><span class="bracket">[</span> 7 DAYS TO DIE MODS<span class="bracket">]</span></a>
+        
+
+  
+    </div>
+
+</body>
+</html>
