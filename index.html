@@ -9,102 +9,119 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
         
         body {
-            background-color: #020617; /* Deep Space Black */
-            background-image: 
-                radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%),
-                linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
+            background-color: #020617;
+            background-image: radial-gradient(circle at 50% 50%, #0a1a2a 0%, #020617 100%);
             font-family: 'Orbitron', sans-serif;
         }
 
-        .glow-border {
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .glow-border:hover {
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
-            border-color: #00d4ff;
-        }
-
-        /* Scanning line effect */
-        .scanline {
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 212, 255, 0.2);
+        /* The Glossy Overlay Effect */
+        .glass-gloss {
             position: absolute;
-            animation: moveScan 8s linear infinite;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+            pointer-events: none;
+            z-index: 10;
         }
 
-        @keyframes moveScan {
-            0% { top: 0; }
-            100% { top: 100%; }
+        .server-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .server-card:hover {
+            border-color: #00d4ff;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4) saturate(1.2);
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+
+        .server-card:hover .bg-image {
+            transform: scale(1.1);
+            filter: brightness(0.6) saturate(1.5);
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 20; /* Sits above image and gloss */
         }
     </style>
 </head>
 <body class="text-cyan-400 min-h-screen p-8">
 
-    <div class="scanline pointer-events-none"></div>
-
-    <header class="text-center mb-16 relative">
-        <h1 class="text-4xl md:text-6xl font-bold tracking-[0.3em] uppercase drop-shadow-[0_0_10px_rgba(0,212,255,0.8)]">
+    <header class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-[0.4em] uppercase drop-shadow-[0_0_8px_rgba(0,212,255,0.6)]">
             Synodic
         </h1>
-        <p class="text-sm tracking-widest mt-4 opacity-60 uppercase">Game Server Deployment Terminal</p>
+        <p class="text-[10px] tracking-[0.5em] mt-4 opacity-50 uppercase">Fleet Deployment Terminal</p>
     </header>
 
     <div id="server-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
         </div>
 
-    <footer class="text-center mt-20 text-[10px] opacity-40 tracking-[5px]">
-        &copy; 2956 SYNODIC AEROSPACE // DATA UPLINK SECURE
-    </footer>
-
     <script>
-        // ADD YOUR SERVERS HERE
         const servers = [
             {
                 name: "Valheim",
                 version: "v0.221.10",
+                image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=600", // Replace with Valheim art
                 downloadUrl: "https://drive.google.com/file/d/1wLFEx8jmC5oyJZJGwqx1d1KWWB-Hj2sb/view?usp=sharing",
-                steamUrl: "steam://connect/46.110.33.136:2456?appid=892970"
+                steamUrl: "steam://connect/46.110.33.136:2456"
             },
             {
                 name: "7 Days To Die",
                 version: "2.5 b32",
+                image: "https://images.unsplash.com/photo-1614726365954-522f7ed939c1?auto=format&fit=crop&q=80&w=600", // Replace with SC art
                 downloadUrl: "https://drive.google.com/file/d/1ZxcOC5qmL26IOFb3A-iISCL9dV7w7ySw/view?usp=sharing",
                 steamUrl: "steam://connect/46.110.33.136:26900"
             },
             {
                 name: "Enshrouded",
                 version: "v.0.9.0.4",
-                downloadUrl: "#",
+                image: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=600", 
                 steamUrl: "steam://connect/46.110.33.136:15637"
             }
+
         ];
 
         const grid = document.getElementById('server-grid');
 
-        // Function to create cards
         servers.forEach(server => {
             const card = document.createElement('div');
-            card.className = "glow-border bg-slate-900/80 backdrop-blur-md p-6 rounded-sm flex flex-col transition-all duration-300 group relative overflow-hidden";
+            card.className = "server-card bg-slate-900 rounded-lg aspect-[4/3] flex flex-col justify-end p-6";
             
             card.innerHTML = `
-                <div class="absolute top-0 right-0 p-2 text-[10px] opacity-30 text-white">${server.version}</div>
-
-                <h2 class="text-xl font-bold mb-6 mt-2 group-hover:text-white transition-colors uppercase tracking-wider h-12 flex items-center justify-center text-center">
-                    ${server.name}
-                </h2>
+                <div class="bg-image" style="background-image: url('${server.image}')"></div>
                 
-                <div class="space-y-4">
-                    <a href="${server.downloadUrl}" target="_blank" class="block w-full text-center py-3 border border-cyan-500 hover:bg-cyan-500 hover:text-black transition-all font-bold text-xs">
-                        [ DOWNLOAD ASSETS ]
-                    </a>
-                    <a href="${server.steamUrl}" class="block w-full text-center py-3 bg-white/5 hover:bg-white hover:text-black transition-all text-xs text-white border border-white/10">
-                        CONNECT TO SERVER
-                    </a>
+                <div class="glass-gloss"></div>
+
+                <div class="content-layer">
+                    <div class="absolute top-[-120px] right-0 text-[9px] opacity-60 font-bold bg-black/40 px-2 py-1 rounded-sm border border-cyan-500/30">
+                        ${server.version}
+                    </div>
+                    
+                    <h2 class="text-xl font-bold mb-4 text-center text-white drop-shadow-lg uppercase tracking-wider">
+                        ${server.name}
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 gap-2">
+                        <a href="${server.downloadUrl}" target="_blank" class="w-full text-center py-2 bg-cyan-500/20 hover:bg-cyan-500 border border-cyan-500 text-cyan-400 hover:text-black transition-all font-bold text-[10px]">
+                            [ DOWNLOAD ASSETS ]
+                        </a>
+                        <a href="${server.steamUrl}" class="w-full text-center py-2 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all font-bold text-[10px]">
+                            CONNECT TO SERVER
+                        </a>
+                    </div>
                 </div>
             `;
             grid.appendChild(card);
@@ -112,6 +129,7 @@
     </script>
 </body>
 </html>
+
 
 
 
