@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synodic Game Servers | Fleet Command</title>
+    <style>
+        :root {
+            --glow-blue: #00d4ff;
+            --dark-bg: #03070a;
+            --card-bg: rgba(10, 25, 40, 0.8);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 50% 50%, #0a1a2a 0%, #03070a 100%),
+                linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+            color: var(--glow-blue);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 40px;
+            text-transform: uppercase;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            letter-spacing: 5px;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
+        /* The Grid Container (Netflix Style) */
+        .server-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Individual Server Card */
+        .server-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            width: 280px;
+            padding: 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .server-card:hover {
+            border-color: var(--glow-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .server-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: block;
+            width: 90%;
+            padding: 12px 0;
+            margin: 8px 0;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 2px;
+            transition: 0.2s;
+        }
+
+        .btn-download {
+            background: transparent;
+            border: 1px solid var(--glow-blue);
+            color: var(--glow-blue);
+        }
+
+        .btn-download:hover {
+            background: var(--glow-blue);
+            color: #000;
+        }
+
+        .btn-steam {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-steam:hover {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SYNODIC GAME SERVERS</h1>
+        <p class="subtitle">SELECT DEPLOYMENT ZONE // UPLINK 0.9.4</p>
+    </header>
+
+    <div class="server-grid">
+
+        <div class="server-card">
+            <div class="server-title">Synodic Valheim</div>
+            <a href="YOUR_GOOGLE_DRIVE_LINK" class="btn btn-download">DOWNLOAD FILES</a>
+            <a href="steam://connect/46.110.33.136:2456" class="btn btn-steam">CONNECT TO STEAM</a>
+        </div>
+
+        <div class="server-card">
+            <div class="server-title">Synodic Sector A</div>
+            <a href="#" class="btn btn-download">DOWNLOAD MANIFEST</a>
+            <a href="#" class="btn btn-steam">JOIN SERVER</a>
+        </div>
+
+        <div class="server-card">
+            <div class="server-title">Training Sim</div>
+            <a href="#" class="btn btn-download">GET ASSETS</a>
+            <a href="#" class="btn btn-steam">LAUNCH SIM</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
