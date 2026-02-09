@@ -14,26 +14,47 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* The Glossy Overlay Effect */
+        /* Improved Gloss & Reflection */
         .glass-gloss {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+            /* Layer 1: Base diagonal shine | Layer 2: Top-down highlight */
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 100%),
+                linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 20%);
             pointer-events: none;
             z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+
+        /* The Shimmer Effect on Hover */
+        .server-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -150%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-20deg);
+            transition: 0.75s;
+            z-index: 11;
+        }
+
+        .server-card:hover::after {
+            left: 150%;
         }
 
         .server-card {
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(0, 212, 255, 0.2);
+            background: #000; /* Ensures the card looks solid */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .server-card:hover {
             border-color: #00d4ff;
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2), inset 0 0 20px rgba(0, 212, 255, 0.1);
         }
 
         .bg-image {
@@ -41,19 +62,21 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.4) saturate(1.2);
-            transition: transform 0.5s ease;
+            filter: brightness(0.5) saturate(1.1);
+            transition: all 0.6s ease;
             z-index: 1;
         }
 
         .server-card:hover .bg-image {
-            transform: scale(1.1);
-            filter: brightness(0.6) saturate(1.5);
+            transform: scale(1.15);
+            filter: brightness(0.7) saturate(1.4);
         }
 
         .content-layer {
             position: relative;
-            z-index: 20; /* Sits above image and gloss */
+            z-index: 20;
+            /* Text shadow to make it pop against the gloss */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
     </style>
 </head>
@@ -129,6 +152,7 @@
     </script>
 </body>
 </html>
+
 
 
 
